@@ -1,0 +1,40 @@
+# Geometry files
+*.stl
+*.obj
+
+# Time directories (results)
+[0-9]*
+[0-9]*.[0-9]*
+
+# But keep 0/ directory (initial conditions)
+!0/
+!0/**
+
+# Processor directories (parallel runs)
+processor*/
+
+# Log files
+log.*
+*.log
+
+# Post-processing
+postProcessing/
+
+# Dynamic code
+dynamicCode/
+
+# PyFoam logs
+PyFoam*/
+
+# VTK files (if you export)
+*.vtk
+*.vtu
+
+# Compiled files
+*.o
+*.so
+*.a
+
+# System backups
+*~
+*.swp

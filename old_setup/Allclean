@@ -1,0 +1,22 @@
+#!/bin/sh
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/CleanFunctions      # Tutorial clean functions
+#------------------------------------------------------------------------------
+
+# Remove unneccesary files
+cleanCase
+rm -rf 0
+rm -f *.bin
+rm -f *Coloring*
+rm -f psi*
+rm -f dXv*
+rm -f grad*
+rm -rf optOutput
+rm -f *log*
+rm -f *.pickle
+
+# Remove FFD files (optional)
+# rm -rf FFD/*.xyz
+
+echo "Cleanup complete!"
+#------------------------------------------------------------------------------

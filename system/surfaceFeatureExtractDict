@@ -1,0 +1,303 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  plus                                  |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      surfaceFeatureExtractDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+drivaer_combined.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        // Mark edges whose adjacent surface normals are at an angle less
+        // than includedAngle as features
+        // - 0  : selects no edges
+        // - 180: selects all edges
+        includedAngle   150;
+    }
+
+    // Write options
+    writeFeatureEdgeMesh    yes;
+    // Write features to obj format for postprocessing
+    writeObj                yes;
+}
+
+/*windtunnel.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        // Mark edges whose adjacent surface normals are at an angle less
+        // than includedAngle as features
+        // - 0  : selects no edges
+        // - 180: selects all edges
+        includedAngle   150;
+    }
+
+    // Write options
+    writeFeatureEdgeMesh    yes;
+    // Write features to obj format for postprocessing
+    writeObj                yes;
+}*/
+
+/*fastback.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        // Mark edges whose adjacent surface normals are at an angle less
+        // than includedAngle as features
+        // - 0  : selects no edges
+        // - 180: selects all edges
+        includedAngle   150;
+    }
+
+    // Write options
+    writeFeatureEdgeMesh    yes;
+    // Write features to obj format for postprocessing
+    writeObj                yes;
+}
+
+fastback_optSurface.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        // Mark edges whose adjacent surface normals are at an angle less
+        // than includedAngle as features
+        // - 0  : selects no edges
+        // - 180: selects all edges
+        includedAngle   150;
+    }
+
+    // Write options
+    writeFeatureEdgeMesh    yes;
+    // Write features to obj format for postprocessing
+    writeObj                yes;
+}*/
+
+/*front_intakes.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        // Mark edges whose adjacent surface normals are at an angle less
+        // than includedAngle as features
+        // - 0  : selects no edges
+        // - 180: selects all edges
+        includedAngle   150;
+    }
+
+    // Write options
+    writeFeatureEdgeMesh    yes;
+    // Write features to obj format for postprocessing
+    writeObj                yes;
+}
+
+lights_front.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        // Mark edges whose adjacent surface normals are at an angle less
+        // than includedAngle as features
+        // - 0  : selects no edges
+        // - 180: selects all edges
+        includedAngle   150;
+    }
+
+    // Write options
+    writeFeatureEdgeMesh    yes;
+    // Write features to obj format for postprocessing
+    writeObj                yes;
+}*/
+
+
+
+/*Mirror_stripe.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        // Mark edges whose adjacent surface normals are at an angle less
+        // than includedAngle as features
+        // - 0  : selects no edges
+        // - 180: selects all edges
+        includedAngle   150;
+    }
+
+    // Write options
+    writeFeatureEdgeMesh    yes;
+    // Write features to obj format for postprocessing
+    writeObj                yes;
+}*/
+
+/*Mirrors.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        // Mark edges whose adjacent surface normals are at an angle less
+        // than includedAngle as features
+        // - 0  : selects no edges
+        // - 180: selects all edges
+        includedAngle   150;
+    }
+
+    // Write options
+    writeFeatureEdgeMesh    yes;
+    // Write features to obj format for postprocessing
+    writeObj                yes;
+}*/
+
+/*tyres_fr.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        // Mark edges whose adjacent surface normals are at an angle less
+        // than includedAngle as features
+        // - 0  : selects no edges
+        // - 180: selects all edges
+        includedAngle   150;
+    }
+
+    // Write options
+    writeFeatureEdgeMesh    yes;
+    // Write features to obj format for postprocessing
+    writeObj                yes;
+}
+
+tyres_rear.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        // Mark edges whose adjacent surface normals are at an angle less
+        // than includedAngle as features
+        // - 0  : selects no edges
+        // - 180: selects all edges
+        includedAngle   150;
+    }
+
+    // Write options
+    writeFeatureEdgeMesh    yes;
+    // Write features to obj format for postprocessing
+    writeObj                yes;
+}
+
+Underbody_Smooth.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        // Mark edges whose adjacent surface normals are at an angle less
+        // than includedAngle as features
+        // - 0  : selects no edges
+        // - 180: selects all edges
+        includedAngle   150;
+    }
+
+    // Write options
+    writeFeatureEdgeMesh    yes;
+    // Write features to obj format for postprocessing
+    writeObj                yes;
+}
+
+wheels_fr.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        // Mark edges whose adjacent surface normals are at an angle less
+        // than includedAngle as features
+        // - 0  : selects no edges
+        // - 180: selects all edges
+        includedAngle   150;
+    }
+
+    // Write options
+    writeFeatureEdgeMesh    yes;
+    // Write features to obj format for postprocessing
+    writeObj                yes;
+}
+
+wheels_rear.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        // Mark edges whose adjacent surface normals are at an angle less
+        // than includedAngle as features
+        // - 0  : selects no edges
+        // - 180: selects all edges
+        includedAngle   150;
+    }
+
+    // Write options
+    writeFeatureEdgeMesh    yes;
+    // Write features to obj format for postprocessing
+    writeObj                yes;
+}*/
+
+/*windows.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        // Mark edges whose adjacent surface normals are at an angle less
+        // than includedAngle as features
+        // - 0  : selects no edges
+        // - 180: selects all edges
+        includedAngle   150;
+    }
+
+    // Write options
+    writeFeatureEdgeMesh    yes;
+    // Write features to obj format for postprocessing
+    writeObj                yes;
+}*/
+
+/*windows_rear.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        // Mark edges whose adjacent surface normals are at an angle less
+        // than includedAngle as features
+        // - 0  : selects no edges
+        // - 180: selects all edges
+        includedAngle   150;
+    }
+
+    // Write options
+    writeFeatureEdgeMesh    yes;
+    // Write features to obj format for postprocessing
+    writeObj                yes;
+}*/
+// ************************************************************************* //

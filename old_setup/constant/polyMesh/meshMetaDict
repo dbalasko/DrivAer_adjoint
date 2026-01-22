@@ -1,0 +1,78 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1812                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant/polyMesh";
+    object      meshMetaDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+surfaceFile     "constant/triSurface/combined.fms";
+
+surfaceMeta
+{
+    nPoints         430235;
+    nFacets         860018;
+    nPatches        8;
+    nFeatureEdges   1574;
+    patches
+    {
+        xMin
+        {
+            type            empty;
+            nFacets         80;
+        }
+        xMax
+        {
+            type            empty;
+            nFacets         80;
+        }
+        yMin
+        {
+            type            empty;
+            nFacets         400;
+        }
+        yMax
+        {
+            type            empty;
+            nFacets         400;
+        }
+        zMin
+        {
+            type            empty;
+            nFacets         640;
+        }
+        zMax
+        {
+            type            empty;
+            nFacets         640;
+        }
+        body
+        {
+            type            empty;
+            nFacets         596941;
+        }
+        optSurface
+        {
+            type            empty;
+            nFacets         260837;
+        }
+    }
+    pointSubsets
+    {
+    }
+    facetSubsets
+    {
+    }
+    featureEdgeSubsets
+    {
+    }
+}
