@@ -10,6 +10,10 @@
 !0/
 !0/**
 
+# Also keep 0.orig/ directory (backup of initial conditions)
+!0.orig/
+!0.orig/**
+
 # Processor directories (parallel runs)
 processor*/
 
