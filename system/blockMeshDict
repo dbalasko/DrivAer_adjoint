@@ -48,7 +48,7 @@ defaultPatch
 
 boundary
 (
-    xMin
+    inlet
     {
         type inlet;
         faces
@@ -57,7 +57,7 @@ boundary
         );
     }
 
-    xMax
+    outlet
     {
         type outlet;
         faces
@@ -66,7 +66,7 @@ boundary
         );
     }
 
-    yMin
+    lowerWall
     {
         type wall;
         faces
@@ -75,9 +75,9 @@ boundary
         );
     }
     
-    yMax
+    upperWall
     {
-	type symmetry;
+	type wall;
 	faces
 	(	
         	(3 2 6 7)
@@ -85,7 +85,7 @@ boundary
 	);
     }
 
-    zMin
+    symmetry
     {
         type symmetry;
         faces
@@ -94,9 +94,9 @@ boundary
         );
     }
 
-    zMax
+    sideWall
     {
-        type symmetry;
+        type wall;
         faces
         (
                 (4 7 6 5)

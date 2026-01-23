@@ -1,11 +1,19 @@
 #!/bin/bash
 
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
+
 if [ -z "$WM_PROJECT" ]; then
   echo "OpenFOAM environment not found, forgot to source the OpenFOAM bashrc?"
   exit
 fi
 
 # pre-processing
+# Alternative decomposeParDict name:
+decompDict="-decomposeParDict system/decomposeParDict"
+
+# copy initial control points from backup
+cp -rf constant/controlPoints.org constant/controlPoints
 
 # generate mesh
 echo "Generating block mesh.."
@@ -16,7 +24,7 @@ surfaceFeatureExtract #>> log.meshGeneration
 # Import tesla geometry & mesh in parallel
 decomposePar #>> log.meshGeneration
 ## foamJob -parallel -screen snappyHexMesh #>> log.meshGeneration
-mpirun -np 32 snappyHexMesh -parallel 
+mpirun -np 32 snappyHexMesh -parallel
 reconstructParMesh -latestTime #>> log.meshGeneration
 echo "Reconstructed parallel mesh"
 

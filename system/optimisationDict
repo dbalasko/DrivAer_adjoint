@@ -68,7 +68,7 @@ adjointManagers
                         {
                             weight     1.;
                             type       force;
-                            patches    ("motorBike.*");
+                            patches    ("body" "optSurface");
                             direction  (1 0 0);
                             Aref       0.75;
                             rhoInf     1;
@@ -111,7 +111,7 @@ optimisation
         type            shape;
         shapeType       volumetricBSplines;
         sensitivityType shapeFI;
-        patches         (motorBikeGroup);
+        patches         ("optSurface");
         maxInitChange   2.e-3;
     }
     updateMethod
