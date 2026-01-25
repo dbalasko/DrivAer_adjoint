@@ -65,11 +65,11 @@ def returnBlockPoints(corners,nx,ny,nz):
 ################ FFD ##############
 nBlocks = 1
 nx = [8]
-ny = [6]
-nz = [8]
+ny = [4]
+nz = [6]
 corners = np.zeros([nBlocks,8,3])
 xMin, yMin, zMin = 1.53, 0.552999, 0.0
-xMax, yMax, zMax = 3.72563, 1.0999, 0.858873
+xMax, yMax, zMax = 4, 1.2, 1.0
 dx = xMax - xMin
 dy = yMax - yMin
 dz = zMax - zMin
@@ -88,7 +88,7 @@ points = []
 for block in range(nBlocks):
     points.append(returnBlockPoints(corners[block],nx[block],ny[block],nz[block]))
 
-fileName = 'controlPoints.xyz'
+fileName = 'boxcpsBsplines0.xyz'
 writeFFDFile(fileName,nBlocks,nx,ny,nz,points)
 
 print(f"FFD file written: {fileName}")

@@ -1,0 +1,190 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2406                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      optimisationDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+optimisationManager steadyOptimisation;
+
+primalSolvers
+{
+    op1
+    {
+        active                 true;
+        type                   incompressible;
+        solver                 simple;
+
+        solutionControls
+        {
+            consistent yes;
+            nIters 1000;
+            residualControl
+            {
+                "p.*"       1.e-5;
+                "U.*"       1.e-5;
+            }
+            averaging
+            {
+                average     true;
+                startIter   500;
+            }
+        }
+    }
+}
+
+adjointManagers
+{
+    adjManager1
+    {
+        primalSolver             op1;
+        adjointSolvers
+        {
+            adjS1
+            {
+                // choose adjoint solver
+                //----------------------
+                active                 true;
+                type                   incompressible;
+                solver                 adjointSimple;
+		computeSensitivities	true;
+
+                // manage objectives
+                //------------------
+                objectives
+                {
+                    type incompressible;
+                    objectiveNames
+                    {
+                        drag
+                        {
+                            weight     1.;
+                            type       force;
+                            patches    ("body" "optSurface");
+                            direction  (1 0 0);
+                            Aref       0.75;
+                            rhoInf     1;
+                            UInf       20;
+                        }
+                    }
+                }
+                // ATC treatment
+                //--------------
+                ATCModel
+                {
+                    ATCModel          standard;
+                    extraConvection   0;
+                    nSmooth           1;
+                    zeroATCPatchTypes (wall patch);
+                    maskType          pointCells;
+                }
+                // solution control
+                //------------------
+                solutionControls
+                {
+                    consistent yes;
+                    nIters 1000;
+                    residualControl
+                    {
+                        "pa.*"       1.e-5;
+                        "Ua.*"       1.e-5;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+optimisation
+{
+    designVariables
+    {
+        type            shape;
+        shapeType       volumetricBSplines;
+        sensitivityType shapeFI;
+        patches         ("optSurface");
+        maxInitChange   1.e-3;
+
+	 // ============= ADD THIS: B-SPLINE PARAMETERIZATION =============
+        // Control point density (adjust based on your geometry size)
+        // Start conservative, increase gradually
+        nCPsU           8;  // Streamwise (x-direction)
+        nCPsV           4;  // Spanwise (y-direction)
+        nCPsW           6;   // Vertical (z-direction)
+
+        // Isovalue for B-spline box (0.5 = centered on geometry)
+        isoValue        0.5;
+
+	confineUMovement    true;
+        confineVMovement    true;
+        confineWMovement    true;
+
+        confineUMinCPs      1;  // Freeze front
+        confineUMaxCPs      1;  // Freeze rear
+
+        confineVMinCPs      1;  // Freeze at bottom
+        confineVMaxCPs      1;  // Freeze far field top
+
+        confineWMinCPs      0;  // DONT'T Freeze symmetry
+        confineWMaxCPs      1;  // Freeze side
+
+        // ============= ADD THIS: SMOOTHING PARAMETERS =============
+        // Smooth sensitivities to prevent non-physical shapes
+        sensitivitySmoothing
+        {
+            type                Laplacian;
+            iterations          150;  // Start with 100, increase if needed
+        }
+
+        // ============= ADD THIS: GEOMETRIC CONSTRAINTS =============
+        // Prevent self-intersecting or invalid geometries
+        constraints
+        {
+            // Maximum displacement per optimization cycle
+            maxDisplacement
+            {
+                active          true;
+                value           0.05;  // 5cm max per iteration
+            }
+
+            // Optional: Volume constraint (useful for packaging)
+            // volumeConstraint
+            // {
+            //     active      true;
+            //     patches     ("optSurface");
+            //     minVolume   0.95;  // Allow 5% volume reduction
+            //     maxVolume   1.05;  // Allow 5% volume increase
+            // }
+        }
+    }
+    updateMethod
+    {
+        method conjugateGradient;
+        lineSearch
+        {
+            type    ArmijoConditions;
+        }
+        eta 0.3; //optional
+
+	lineSearch
+        {
+            type            ArmijoConditions;
+            c1              1.e-4;  // Sufficient decrease parameter
+            maxIters        10;     // Max line search iterations
+            stepUpdate      0.5;    // Step reduction factor
+        }
+    }
+}
+
+
+// ************************************************************************* //

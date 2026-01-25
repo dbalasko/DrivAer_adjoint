@@ -44,11 +44,11 @@ def readPlot3D(filename):
     return x, y, z
 
 # Convert
-x, y, z = readPlot3D('teslaFFD.xyz')
+x, y, z = readPlot3D('boxcpsBsplines0.xyz')
 
 # Write VTK
 gridToVTK(
-    './FFD_optSurface',
+    './boxcpsBsplines0',
     x, y, z
 )
 

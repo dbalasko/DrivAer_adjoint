@@ -16,13 +16,15 @@ FoamFile
 
 application     adjointOptimisationFoam;
 
+//application	simpleFoam;
+
 startFrom       latestTime;
 
 startTime       0;
 
 stopAt          endTime;
 
-endTime         10;
+endTime         100;
 
 deltaT          1;
 
@@ -43,6 +45,44 @@ timeFormat      general;
 timePrecision   6;
 
 runTimeModifiable true;
+
+functions
+{
+    forceCoeffs
+    {
+        type            forceCoeffs;
+        libs            ("libforces.so");
+
+        patches         ("body" "optSurface");  // Your car surface
+
+        rho             rhoInf;
+        rhoInf          1.225;
+
+        CofR            (2.5 0 0);
+        liftDir         (0 1 0);
+        dragDir         (1 0 0);
+        pitchAxis       (0 0 1);
+
+        magUInf         20;
+        lRef            4.6;
+        Aref            1.016;  // Half car!
+
+        writeControl    timeStep;
+        writeInterval   1;
+    }
+
+    yPlus
+    {
+        type            yPlus;
+        libs            ("libfieldFunctionObjects.so");
+
+        writeControl    timeStep;
+        writeInterval   1;        // Write every 1 iteration
+
+        // Optional: only calculate on specific patches
+        patches         ("body" "optSurface");
+    }
+}
 
 
 // ************************************************************************* //

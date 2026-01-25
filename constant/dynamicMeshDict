@@ -22,8 +22,8 @@ volumetricBSplinesMotionSolverCoeffs
     {
         type    cartesian;
         nCPsU   8;
-        nCPsV   6;
-        nCPsW   8;
+        nCPsV   4;
+        nCPsW   6;
         degreeU 3;
         degreeV 3;
         degreeW 3;
@@ -35,12 +35,12 @@ volumetricBSplinesMotionSolverCoeffs
         confineWMovement false;
         confineBoundaryControlPoints false;
 
-        confineUMinCPs ( (false true false) (false true false) );
-        confineUMaxCPs ( (false true false) );
-        confineVMinCPs ( (false true false) (false true false) );
-        confineVMaxCPs ( (false true false) (false true false) );
-        confineWMinCPs ( (false true false) );
-        confineWMaxCPs ( (false true false) (false true false) );
+        confineUMinCPs ( (true true true));
+        confineUMaxCPs ( (true true true));
+        confineVMinCPs ( (true true true));
+        confineVMaxCPs ( (true true true));
+        confineWMinCPs ( (false false true) );
+        confineWMaxCPs ( (true true true) );
     }
 }
 

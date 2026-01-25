@@ -30,8 +30,8 @@ primalSolvers
             nIters 1000;
             residualControl
             {
-                "p.*"       1.e-5;
-                "U.*"       1.e-5;
+                "p.*"       1.e-7;
+                "U.*"       1.e-7;
             }
             averaging
             {
@@ -70,8 +70,8 @@ adjointManagers
                             type       force;
                             patches    ("body" "optSurface");
                             direction  (1 0 0);
-                            Aref       0.75;
-                            rhoInf     1;
+                            Aref       1.016;
+                            rhoInf     1.225;
                             UInf       20;
                         }
                     }
@@ -94,8 +94,8 @@ adjointManagers
                     nIters 1000;
                     residualControl
                     {
-                        "pa.*"       1.e-5;
-                        "Ua.*"       1.e-5;
+                        "pa.*"       1.e-7;
+                        "Ua.*"       1.e-7;
                     }
                 }
             }
@@ -111,8 +111,17 @@ optimisation
         type            shape;
         shapeType       volumetricBSplines;
         sensitivityType shapeFI;
-        patches         ("optSurface");
+        patches         (optSurface);
         maxInitChange   2.e-3;
+    }
+
+    convergence
+    {
+    	designVariables 	1.e-4;
+	objective 		1.e-4;
+	feasibilityThreshold 	1.e-6;
+    
+    
     }
     updateMethod
     {
