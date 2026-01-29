@@ -73,6 +73,19 @@ python scripts/scale_stl.py
 ```
 NOTE: You have to modify the input and output file name in the script. Also scaling value can be modified.
 
+### 5. Visualize control point motion
+
+The control points for every timestep are written under ./optimisation/controlPoints
+
+The following script creates a .vtk file, which allows to import the time dependent control point locations as one case to paraview.
+
+```bash
+cp scripts/csv_to_vtk_converter.py optimisation/controlPoints/csv_to_vtk_converter.py
+
+python optimisation/controlPoints/csv_to_vtk_converter.py
+```
+NOTE: The file has to be copied to the same directory, where the .csv data are located
+
 ## Results
 
 Results are stored in time directories. Key outputs:
