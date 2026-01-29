@@ -142,6 +142,13 @@ geometry
         min (3 -0.29 -1.5);
         max (30 1.5 1.5);
    }
+
+   downstream_full_length
+   {
+   	type searchableBox;
+	min (2 -0.29 -1.8);
+	max (30 1.8 1.8);
+   }
    
   /*wheelBoxRear
    {
@@ -274,6 +281,12 @@ castellatedMeshControls
        {
              mode inside;
              levels ((4 4));
+       }
+
+       "downstream_full_length"
+       {
+       		mode inside;
+		levels ((3 3));
        }
        
        /*"(wheelBoxFront|wheelBoxRear)"

@@ -64,12 +64,12 @@ def returnBlockPoints(corners,nx,ny,nz):
 
 ################ FFD ##############
 nBlocks = 1
-nx = [8]
-ny = [4]
+nx = [10]
+ny = [6]
 nz = [6]
 corners = np.zeros([nBlocks,8,3])
-xMin, yMin, zMin = 1.53, 0.552999, 0.0
-xMax, yMax, zMax = 4, 1.2, 1.0
+xMin, yMin, zMin = 1.53, 0.5, 0.0
+xMax, yMax, zMax = 4.2, 1.2, 1.0
 dx = xMax - xMin
 dy = yMax - yMin
 dz = zMax - zMin

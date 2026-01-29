@@ -56,6 +56,7 @@ adjointManagers
                 active                 true;
                 type                   incompressible;
                 solver                 adjointSimple;
+                computeSensitivities true ;
 
                 // manage objectives
                 //------------------
@@ -113,6 +114,64 @@ optimisation
         sensitivityType shapeFI;
         patches         (optSurface);
         maxInitChange   2.e-3;
+        
+        sensitivityType multiple;
+        sensitivityTypes 
+        (
+            pointBased 
+            faceBased-unsmoothed
+            faceBased-RMult_2
+            faceBased-RMult_5
+            faceBased-RMult_10
+        );
+        patches          ("optSurface" "body");
+        pointBased
+        {
+            sensitivityType    surfacePoints;
+            patches            ("optSurface" "body");
+            adjointEikonalSolver
+            {
+                tolerance 1.e-5;
+                iters     1000;
+                epsilon   0.1;
+            }
+        }
+        faceBased-unsmoothed
+        {
+            sensitivityType      surface;
+            patches              ("optSurface" "body");
+            includeSurfaceArea   true;
+        }
+        faceBased-RMult_2
+        {
+            sensitivityType      surface;
+            patches              ("optSurface" "body");
+            includeSurfaceArea   true;
+            smoothSensitivities  true;
+            meanRadiusMultiplier 2;
+            suffix               Rmult2; // suffix of the sensitivity map output files
+            iters                1000;
+        }
+        faceBased-RMult_5
+        {
+            sensitivityType      surface;
+            patches              ("optSurface" "body");
+            includeSurfaceArea   true;
+            smoothSensitivities  true;
+            meanRadiusMultiplier 5;
+            suffix               Rmult5; // suffix of the sensitivity map output files
+            iters                1000;
+        }
+        faceBased-RMult_10
+        {
+            sensitivityType      surface;
+            patches              ("optSurface" "body");
+            includeSurfaceArea   true;
+            smoothSensitivities  true;
+            meanRadiusMultiplier 10;
+            suffix               Rmult10; // suffix of the sensitivity map output files
+            iters                1000;
+        }
     }
 
     convergence
